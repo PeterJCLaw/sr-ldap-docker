@@ -1,0 +1,8 @@
+dn: o=sr
+changetype: add
+objectClass: top
+objectClass: dcObject
+objectClass: organization
+o: sr
+dc: studentrobotics
+description: studentrobotics.org
