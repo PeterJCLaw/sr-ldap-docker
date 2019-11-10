@@ -2,3 +2,16 @@ dn: olcDatabase={1}mdb,cn=config
 changetype: modify
 replace: olcRootDN
 olcRootDN: cn=Manager,o=sr
+-
+replace: olcAccess
+olcAccess: {0}to attrs=userPassword,shadowLastChange
+    by self write
+    by dn="cn=Manager,o=sr" write
+    by anonymous auth
+    by * none
+-
+replace: olcAccess
+olcAccess: {1}to *
+    by self read
+    by dn="cn=Manager,o=sr" write
+    by * none
