@@ -1,5 +1,7 @@
 FROM osixia/openldap
 
+ENV LDAP_TLS=false
+
 COPY *.ldif /container/service/slapd/assets/config/bootstrap/ldif/custom/
 
 ENV LDAP_ORGANISATION=studentrobotics.org \
