@@ -1,10 +1,6 @@
 FROM osixia/openldap
 
-COPY 01-olcRootDN.ldif \
-     02-create-RootDN.ldif \
-     03-create-organizationalUnits.ldif \
-     99-rename-olcRootDN.ldif \
-        /container/service/slapd/assets/config/bootstrap/ldif/custom/
+COPY *.ldif /container/service/slapd/assets/config/bootstrap/ldif/custom/
 
 ENV LDAP_ORGANISATION=studentrobotics.org \
     LDAP_DOMAIN=sr \
