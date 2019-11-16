@@ -1,0 +1,22 @@
+name: Publish to Github Packages
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Build the Docker image
+      run: docker build --tag docker.pkg.github.com/${GITHUB_REPOSITORY,,}/sr-dev-ldap:${GITHUB_REF#refs/tags/} .
+
+    - name: Log into the Github Docker Registry
+      run: echo ${{ secrets.GITHUB_TOKEN }} | docker login docker.pkg.github.com -u ${GITHUB_REPOSITORY%/*} --password-stdin
+
+    - name: Push the Docker image
+      run: docker push docker.pkg.github.com/${GITHUB_REPOSITORY,,}/sr-dev-ldap:${GITHUB_REF#refs/tags/}
