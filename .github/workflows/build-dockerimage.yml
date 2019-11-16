@@ -13,4 +13,4 @@ jobs:
     - uses: actions/checkout@v1
 
     - name: Build the Docker image
-      run: docker build --tag docker.pkg.github.com/${GITHUB_REPOSITORY,,}/sr-dev-ldap .
+      run: docker build .
