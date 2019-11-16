@@ -8,20 +8,20 @@ olcAccess: to * by self read by dn="cn=admin,o=sr" write by * none
 dn: olcDatabase={1}mdb,cn=config
 changetype: modify
 add: olcAccess
-# Everything can write to itself
-olcAccess: {1}to *
-    by self write
-    by * none
 # * A user by itself can read and write its own userPassword,
 # * anonymous can auth against it when binding,
 # * no-one else can touch them.
-olcAccess: {2}to attrs=userPassword
+olcAccess: {1}to attrs=userPassword
     by self write
     by anonymous auth
     by * none
 # Allow anyone to read peoples usernames and UIDNumbers.
-olcAccess: {3}to attrs=uidNumber,uid
+olcAccess: {2}to attrs=uidNumber,uid
     by * read
 # Allow anyone to see the existence of other users
-olcAccess: {4}to dn.subtree="ou=users,o=sr" attrs=entry,objectClass
+olcAccess: {3}to dn.subtree="ou=users,o=sr" attrs=entry,objectClass
     by * read
+# Everything can write to itself
+olcAccess: {4}to *
+    by self write
+    by * none
